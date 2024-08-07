@@ -1,0 +1,16 @@
+#include <SoftwareSerial.h>
+
+SoftwareSerial IM315Serial(8, 9);    // RX, TX
+
+void setup() {
+  IM315Serial.begin(19200);
+
+  pinMode(10, INPUT);
+}
+
+void loop() {
+  if(digitalRead(10) == LOW)
+  {
+    IM315Serial.println("TXDT");      
+  }
+}
