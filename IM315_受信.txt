@@ -1,0 +1,28 @@
+#include<SoftwareSerial.h>
+
+SoftwareSerial IM315Serial(8, 9);  //RX, TX
+
+char input[50];
+int i = 0;
+
+void setup() {
+  Serial.begin(19200);
+  IM315Serial.begin(19200);
+}
+
+void loop() {
+  if (IM315Serial.available()) 
+  {
+    input[i] = IM315Serial.read();
+    if (input[i] == '\n') 
+    {
+      input[i] = '\n';
+      Serial.print(input);
+      i = 0;
+    }
+    else
+    {
+        i++;
+    }
+  }
+}
